@@ -1,0 +1,26 @@
+[
+  {
+    "CustName": "Please Work",
+    "CustAddress": "123 kdfjkdjf",
+    "CustNum": "123455689",
+    "CustOrders": null
+  },
+  {
+    "CustName": "Please Work the 2nd",
+    "CustAddress": "123 new adddy",
+    "CustNum": "3435565",
+    "CustOrders": null
+  },
+  {
+    "CustName": " ",
+    "CustAddress": " ",
+    "CustNum": "0",
+    "CustOrders": null
+  },
+  {
+    "CustName": "Snoop Shady",
+    "CustAddress": "360 No Scope St",
+    "CustNum": "3457384",
+    "CustOrders": null
+  }
+]
