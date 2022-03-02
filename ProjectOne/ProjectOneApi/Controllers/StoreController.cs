@@ -49,16 +49,33 @@ namespace ProjectOneApi.Controllers
             }
         }
 
-        // POST: api/Store
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetStoreInventory")]
+        public IActionResult GetStoreInventory(int storeID)
         {
+            try
+            {
+                return Ok(_custBL.GetStoreInv(storeID));
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         // PUT: api/Store/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("IncreaseStoreInventory")]
+        public IActionResult IncreaseStoreInventory(string UserName, string PassWord, int StoreItemID, int Amount)
         {
+            try
+            {
+                return Accepted(_custBL.ChangeInvQuantity(UserName,PassWord,StoreItemID,Amount));
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         // DELETE: api/Store/5

@@ -54,7 +54,7 @@ namespace ProjectOneDL
         void AddToOrder(Orders CurrentOrder, Inv StoreItem);
 
 
-        void ChangeInvQuantity(int value,int StoreItemID);
+        Inv ChangeInvQuantity(int StoreItemID,int Amount);
 
         List<Orders> GetAllOrders(int ID, string filter);
 

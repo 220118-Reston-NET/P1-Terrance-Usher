@@ -22,7 +22,7 @@ namespace ProjectOneModel
                 }
             }
         }
-        public List<Item>? InvList { get; set;}
+        //public List<Item>? InvList { get; set;}
         
 
         public override string ToString()

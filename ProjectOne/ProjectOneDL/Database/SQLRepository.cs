@@ -57,8 +57,10 @@ namespace ProjectOneDL
         }
 
 
-        public void ChangeInvQuantity(int value, int StoreItemID)
+        public Inv ChangeInvQuantity(int StoreItemID, int Amount)
         {
+            
+
             string sqlQuery = @"update Store_Item 
                             set Quantity = Quantity + (@Value)
                             where Store_ItemID = @StoreItemID";
@@ -67,11 +69,33 @@ namespace ProjectOneDL
                 con.Open();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@Value", value);
+                command.Parameters.AddWithValue("@Value", Amount);
                 command.Parameters.AddWithValue("@StoreItemID", StoreItemID);
                 command.ExecuteNonQuery();
 
+                sqlQuery = @"select * from Store_Item si 
+                        inner join Item i on si.ItemID = i.ItemID 
+                        where si.Store_ItemID = @StoreItemID";
+                command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@StoreItemID", StoreItemID);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Inv selectedInv = new Inv(){
+                        ItemID = reader.GetInt32(0),
+                        ItemQuantity = reader.GetInt32(3),
+                        ItemName = reader.GetString(5),
+                        ItemPrice = reader.GetDecimal(6),
+                        ItemDesc = reader.GetString(7),
+                        ItemCate = reader.GetString(8)
+                    };
+                    return selectedInv;
+                }
+
             }
+            return null;
+            
         }
 
         public Orders CreateOrder(int CustID, int StoreID)

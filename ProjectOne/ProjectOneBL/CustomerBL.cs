@@ -42,9 +42,12 @@ namespace ProjectOneBL
             throw new Exception("Wrong Username or Password.");
         }
 
-        public void ChangeInvQuantity(int value, int StoreItemID)
+        public Inv ChangeInvQuantity(string UserName, string PassWord, int StoreItemID, int Amount)
         {
-            _repo.ChangeInvQuantity(value, StoreItemID);
+            if (AuthenticateCust(UserName,PassWord))
+            return _repo.ChangeInvQuantity(StoreItemID, Amount);
+            else
+            throw new Exception("You are not authorized.");
         }
 
         public Orders CreateOrder(int CustID, int StoreID)
@@ -60,7 +63,7 @@ namespace ProjectOneBL
             }
             else
             {
-                return null;
+                throw new Exception("You are not authorized.");
             }
             
         }

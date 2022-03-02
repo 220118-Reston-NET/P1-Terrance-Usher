@@ -15,10 +15,7 @@ namespace ProjectOneModel
 
         public decimal OrderTotal { get; set; }
 
-
-
-
-        public List<Inv> ItemsPurchased = new List<Inv>();
+        public List<Inv> ItemsPurchased {get; set;}
 
         public Orders()
         {

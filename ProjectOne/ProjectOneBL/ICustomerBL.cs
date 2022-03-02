@@ -50,7 +50,7 @@ namespace ProjectOneBL
 
         void AddToOrder(Orders CurrentOrder, Inv StoreItem);
 
-        void ChangeInvQuantity(int value,int StoreItemID);
+        Inv ChangeInvQuantity(string UserName, string PassWord, int StoreItemID,int Amount);
 
         List<Orders> GetAllOrders();
 

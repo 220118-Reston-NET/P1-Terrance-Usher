@@ -92,6 +92,11 @@ namespace ProjectOneDL
         {
             throw new NotImplementedException();
         }
+
+        Inv IRepository.ChangeInvQuantity(int value, int StoreItemID)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
