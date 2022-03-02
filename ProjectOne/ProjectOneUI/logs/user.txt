@@ -30,3 +30,8 @@
 2022-02-16 11:43:06.858 -06:00 [INF] Displaying the View Store Inventory Menu to user
 2022-02-16 11:43:13.823 -06:00 [INF] Displaying Main Menu to user
 2022-02-16 11:43:18.335 -06:00 [INF] Displaying Main Menu to user
+2022-02-24 14:07:21.793 -06:00 [INF] Displaying Search Customer Menu to user
+2022-02-24 14:13:09.514 -06:00 [INF] Displaying Search Customer Menu to user
+2022-02-24 14:26:45.546 -06:00 [INF] Displaying Search Customer Menu to user
+2022-02-24 14:30:48.493 -06:00 [INF] Displaying Search Customer Menu to user
+2022-02-24 14:30:57.812 -06:00 [INF] Displaying Main Menu to user

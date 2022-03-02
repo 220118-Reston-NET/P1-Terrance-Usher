@@ -26,6 +26,9 @@ namespace ProjectOneDL
         /// <returns> A list collection of Cust objects </returns>
         List<Cust> GetAllCust();
 
+        Task<List<Cust>> GetAllCustAsync();
+
+
         /// <summary>
         /// Grab a customer by their ID
         /// </summary>

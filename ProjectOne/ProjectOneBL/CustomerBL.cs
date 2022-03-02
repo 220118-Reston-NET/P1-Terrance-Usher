@@ -14,20 +14,32 @@ namespace ProjectOneBL
 
         public Cust AddCust(Cust c_cust)
         {
-            // Console.WriteLine("Please Input Your Name.");
-            // c_cust.CustName = Console.ReadLine();
-            // Console.WriteLine("Please Input Your Phone Number.");
-            // c_cust.CustNum = Convert.ToInt32(Console.ReadLine());
-            // Console.WriteLine("Please Input Your Address.");
-            // c_cust.CustAddress = Console.ReadLine();
-            // Console.WriteLine("Thank You");
-            
             return _repo.AddCust(c_cust);
         }
 
         public void AddToOrder(Orders CurrentOrder, Inv StoreItem)
         {
             _repo.AddToOrder(CurrentOrder,StoreItem);
+        }
+
+        public bool AuthenticateCust(string UserName, string PassWord)
+        {
+            List<Cust>listOfAllCust = _repo.GetAllCust();
+            foreach (Cust user in listOfAllCust)
+            {
+                if (user.UserName == UserName && user.PassWord == PassWord)
+                {
+                    if (user.Authorized == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        throw new Exception("You are not authorized.");
+                    }
+                }
+            }
+            throw new Exception("Wrong Username or Password.");
         }
 
         public void ChangeInvQuantity(int value, int StoreItemID)
@@ -38,6 +50,29 @@ namespace ProjectOneBL
         public Orders CreateOrder(int CustID, int StoreID)
         {
             return _repo.CreateOrder(CustID,StoreID);
+        }
+
+        public List<Cust> GetAllCustomers(string UserName, string PassWord)
+        {
+            if (AuthenticateCust(UserName,PassWord))
+            {
+                return _repo.GetAllCust();
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
+        public async Task<List<Cust>> GetAllCustomersAsync(string UserName, string PassWord)
+        {
+            if (AuthenticateCust(UserName,PassWord))
+            return await _repo.GetAllCustAsync();
+            else
+            {
+                return null;
+            }
         }
 
         public List<Orders> GetAllOrders()
@@ -84,6 +119,13 @@ namespace ProjectOneBL
         {
             return _repo.GetCustByID(c_cID);
 
+        }
+
+        public Store SearchStores(int StoreID)
+        {
+            List<Store>listOfAllStores =  _repo.GetAllStores();
+            List<Store>selectedStore = listOfAllStores.Where(store => store.StoreID.Equals(StoreID)).ToList();
+            return selectedStore[0];
         }
     }
 

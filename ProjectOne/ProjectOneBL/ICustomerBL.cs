@@ -33,6 +33,15 @@ namespace ProjectOneBL
 
         List<Store> GetAllStores();
 
+        List<Cust> GetAllCustomers(string UserName, string PassWord);
+
+        Task<List<Cust>> GetAllCustomersAsync(string UserName, string PassWord);
+
+        bool AuthenticateCust(string UserName, string PassWord);
+
+
+        Store SearchStores(int StoreID);
+
         List<Inv> GetStoreInv (int StoreID);
 
         Orders CreateOrder(int CustID, int StoreID);

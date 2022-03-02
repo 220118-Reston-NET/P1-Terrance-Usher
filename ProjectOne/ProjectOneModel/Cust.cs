@@ -11,13 +11,18 @@ namespace ProjectOneModel
         public string? CustAddress {get; set;}
         public string? CustNum { get; set; }
         public List<Item> CustOrders { get; set; }
-
+        public string UserName { get; set; }
+        public string PassWord {get; set; }
+        public bool Authorized {get; set; }
 
         public Cust()
         {
             CustName = " ";
             CustAddress = " ";
             CustNum = "0000000000";
+            UserName = "";
+            PassWord = "";
+            Authorized = false;
         }
 
         public override string ToString()

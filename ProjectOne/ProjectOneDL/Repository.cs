@@ -34,6 +34,7 @@ namespace ProjectOneDL
             throw new NotImplementedException();
         }
 
+
         public void ChangeInvQuantity(int value, int StoreItemID)
         {
             throw new NotImplementedException();
@@ -50,6 +51,11 @@ namespace ProjectOneDL
 
             return JsonSerializer.Deserialize<List<Cust>>(_jsonString);
 
+        }
+
+        public Task<List<Cust>> GetAllCustAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public List<Inv> GetAllOrderItems(int ID)

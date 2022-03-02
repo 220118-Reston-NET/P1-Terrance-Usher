@@ -14,7 +14,7 @@ namespace ProjectOneDL
         {
             
             string sqlQuery = @"insert  into Customer 
-                            values(@CustName, @CustAddress, @CustNum)";
+                            values(@CustName, @CustAddress, @CustNum, @PassWord, @UserName, 0)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
@@ -24,6 +24,8 @@ namespace ProjectOneDL
                 command.Parameters.AddWithValue("@CustName", c_cust.CustName);
                 command.Parameters.AddWithValue("@CustAddress", c_cust.CustAddress);
                 command.Parameters.AddWithValue("@CustNum", c_cust.CustNum);
+                command.Parameters.AddWithValue("@PassWord", c_cust.PassWord);
+                command.Parameters.AddWithValue("@UserName", c_cust.UserName);
 
                 command.ExecuteNonQuery();
 
@@ -53,6 +55,7 @@ namespace ProjectOneDL
             CurrentOrder.OrderTotal = CurrentOrder.OrderTotal + StoreItem.ItemPrice;
 
         }
+
 
         public void ChangeInvQuantity(int value, int StoreItemID)
         {
@@ -135,7 +138,42 @@ namespace ProjectOneDL
                         CustID = reader.GetInt32(0),
                         CustName = reader.GetString(1),
                         CustAddress = reader.GetString(2),
-                        CustNum = reader.GetString(3)
+                        CustNum = reader.GetString(3),
+                        PassWord = reader.GetString(4),
+                        UserName = reader.GetString(5),
+                        Authorized = reader.GetBoolean(6)
+                    });
+                }
+            }
+
+            return listOfCustomer;
+        }
+
+        public async Task<List<Cust>> GetAllCustAsync()
+        {
+            List<Cust> listOfCustomer  = new List<Cust>();
+
+            string sqlQuery = @"select * from Customer";
+
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
+            {
+
+                await con.OpenAsync();
+
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                while (reader.Read())
+                {
+                    listOfCustomer.Add(new Cust(){
+                        CustID = reader.GetInt32(0),
+                        CustName = reader.GetString(1),
+                        CustAddress = reader.GetString(2),
+                        CustNum = reader.GetString(3),
+                        PassWord = reader.GetString(4),
+                        UserName = reader.GetString(5),
+                        Authorized = reader.GetBoolean(6)
                     });
                 }
             }
