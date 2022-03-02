@@ -37,7 +37,7 @@ namespace ProjectOneBL
 
         Task<List<Cust>> GetAllCustomersAsync(string UserName, string PassWord);
 
-        Cust GiveCustAuthentication(string UserName, string PassWord, int CustID);
+        Cust GiveCustauthorization(string UserName, string PassWord, int CustID);
 
         bool AuthenticateCust(string UserName, string PassWord);
 
@@ -48,11 +48,13 @@ namespace ProjectOneBL
 
         Orders CreateOrder(int CustID, int StoreID);
 
-        void AddToOrder(Orders CurrentOrder, Inv StoreItem);
+        Orders AddToOrder(int StoreItemID, int Amount);
 
         Inv ChangeInvQuantity(string UserName, string PassWord, int StoreItemID,int Amount);
 
-        List<Orders> GetAllOrders();
+        List<Orders> GetAllOrdersByCustomerID(int CustomerID);
+
+        List<Orders> GetAllOrdersByStoreID(int StoreID);
 
 
     }

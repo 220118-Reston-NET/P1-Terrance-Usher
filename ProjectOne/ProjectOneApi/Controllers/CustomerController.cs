@@ -84,11 +84,11 @@ namespace ProjectOneApi.Controllers
 
         // PUT: api/Customer/5
         [HttpPut("AuthorizeCustomer/{UserName}/{PassWord}/{CustomerID}")]
-        public IActionResult Put(string UserName, string PassWord, int CustomerID)
+        public IActionResult AuthorizeCustomer(string UserName, string PassWord, int CustomerID)
         {
             try
             {
-                return Accepted("Successfully updated a Customer",_custBL.GiveCustAuthentication(UserName, PassWord, CustomerID));
+                return Accepted("Successfully updated a Customer",_custBL.GiveCustauthorization(UserName, PassWord, CustomerID));
             }
             finally
             {

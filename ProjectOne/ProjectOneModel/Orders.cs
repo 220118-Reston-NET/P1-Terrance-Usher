@@ -19,8 +19,14 @@ namespace ProjectOneModel
 
         public Orders()
         {
+            OrderID = 0;
+            StoreName = " ";
+            StoreAddress = " ";
+            CustomerName = " ";
+            CustomerAddress = " ";
+            CustomerNumber = " ";
+            ItemsPurchased = new List<Inv>();
             OrderTotal = 0;
-            List<Inv>? itemsPurchased = ItemsPurchased;
         }
 
         public override string ToString()

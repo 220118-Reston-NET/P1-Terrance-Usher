@@ -17,9 +17,9 @@ namespace ProjectOneBL
             return _repo.AddCust(c_cust);
         }
 
-        public void AddToOrder(Orders CurrentOrder, Inv StoreItem)
+        public Orders AddToOrder(int StoreItemID, int Amount)
         {
-            _repo.AddToOrder(CurrentOrder,StoreItem);
+            return _repo.AddToOrder(StoreItemID,Amount);
         }
 
         public bool AuthenticateCust(string UserName, string PassWord)
@@ -76,9 +76,14 @@ namespace ProjectOneBL
                 return null;
         }
 
-        public List<Orders> GetAllOrders()
+        public List<Orders> GetAllOrdersByCustomerID(int CustomerID)
         {
-            return _repo.GetAllOrders(0, " ");
+            return _repo.GetAllOrdersByCustomerID(CustomerID);
+        }
+
+        public List<Orders> GetAllOrdersByStoreID(int StoreID)
+        {
+            return _repo.GetAllOrdersByStoreID(StoreID);
         }
 
         public List<Store> GetAllStores()
@@ -96,11 +101,11 @@ namespace ProjectOneBL
             return _repo.GetStoreInv(StoreID);
         }
 
-        public Cust GiveCustAuthentication(string UserName, string PassWord, int CustID)
+        public Cust GiveCustauthorization(string UserName, string PassWord, int CustID)
         {
             if (AuthenticateCust(UserName,PassWord))
             {
-                _repo.GiveCustAuthentication(CustID);
+                _repo.GiveCustauthorization(CustID);
                 return _repo.GetCustByID(CustID);
             }
             else

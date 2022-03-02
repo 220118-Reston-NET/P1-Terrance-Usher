@@ -28,7 +28,7 @@ namespace ProjectOneDL
 
         Task<List<Cust>> GetAllCustAsync();
 
-        void GiveCustAuthentication(int CustID);
+        void GiveCustauthorization(int CustID);
 
         /// <summary>
         /// Grab a customer by their ID
@@ -51,12 +51,14 @@ namespace ProjectOneDL
         Orders CreateOrder(int CustID, int StoreID);
 
 
-        void AddToOrder(Orders CurrentOrder, Inv StoreItem);
+        Orders AddToOrder(int StoreItemID, int Amount);
 
 
         Inv ChangeInvQuantity(int StoreItemID,int Amount);
 
-        List<Orders> GetAllOrders(int ID, string filter);
+        List<Orders> GetAllOrdersByCustomerID(int CustomerID);
+
+        List<Orders> GetAllOrdersByStoreID(int StoreID);
 
         List<Inv> GetAllOrderItems(int ID);
     }

@@ -34,6 +34,10 @@ namespace ProjectOneDL
             throw new NotImplementedException();
         }
 
+        public Orders AddToOrder(int StoreItemID, int Amount)
+        {
+            throw new NotImplementedException();
+        }
 
         public void ChangeInvQuantity(int value, int StoreItemID)
         {
@@ -68,6 +72,16 @@ namespace ProjectOneDL
             throw new NotImplementedException();
         }
 
+        public List<Orders> GetAllOrdersByCustomerID(int CustomerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Orders> GetAllOrdersByStoreID(int StoreID)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Store> GetAllStores()
         {
             throw new NotImplementedException();
@@ -88,7 +102,7 @@ namespace ProjectOneDL
             throw new NotImplementedException();
         }
 
-        public void GiveCustAuthentication(int CustID)
+        public void GiveCustauthorization(int CustID)
         {
             throw new NotImplementedException();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectOneBL;
 
 namespace ProjectOneApi.Controllers
 {
@@ -11,36 +12,69 @@ namespace ProjectOneApi.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        // GET: api/Order
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private ICustomerBL _custBL;
+        public OrderController(ICustomerBL c_custBL)
         {
-            return new string[] { "value1", "value2" };
+            _custBL = c_custBL;
         }
-
-        // GET: api/Order/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/Order
         [HttpPost("CreateNewOrder")]
-        public void Post([FromBody] string value)
+        public IActionResult CreateNewOrder(int CustomerID, int StoreID)
         {
+            try
+            {
+                return Created("Successfully created a new Order",_custBL.CreateOrder(CustomerID, StoreID));
+            }
+            catch (System.Exception)
+            {
+                
+                return Conflict();
+            }
         }
-
         // PUT: api/Order/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("AddToLatestOrder")]
+        public IActionResult AddToLatestOrder(int StoreItemID, int Amount)
         {
+            try
+            {
+                return Accepted(_custBL.AddToOrder(StoreItemID, Math.Abs(Amount)));
+            }
+            catch (System.Exception)
+            {
+                
+                throw new Exception("Unable to add to order");
+            }
+        }
+        // GET: api/Order
+        [HttpGet("GetOrderByCustomerID")]
+        public IActionResult GetOrdersByCustomerID(int CustomerID)
+        {
+            
+            try
+            {
+                return Ok(_custBL.GetAllOrdersByCustomerID(CustomerID));
+            }
+            catch (System.Exception)
+            {
+                
+                throw new Exception("No User Found");
+            }
         }
 
-        // DELETE: api/Order/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("GetOrderByStoreID")]
+        public IActionResult GetOrdersByStoreID(int StoreID)
         {
+            
+            try
+            {
+                return Ok(_custBL.GetAllOrdersByStoreID(StoreID));
+            }
+            catch (System.Exception)
+            {
+                
+                throw new Exception("No User Found");
+            }
         }
+        
     }
 }

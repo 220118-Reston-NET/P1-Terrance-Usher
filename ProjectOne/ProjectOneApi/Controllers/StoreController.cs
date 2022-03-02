@@ -69,7 +69,7 @@ namespace ProjectOneApi.Controllers
         {
             try
             {
-                return Accepted(_custBL.ChangeInvQuantity(UserName,PassWord,StoreItemID,Amount));
+                return Accepted(_custBL.ChangeInvQuantity(UserName,PassWord,StoreItemID,Math.Abs(Amount)));
             }
             catch (System.Exception)
             {
