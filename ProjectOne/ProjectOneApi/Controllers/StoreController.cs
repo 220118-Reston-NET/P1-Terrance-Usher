@@ -78,10 +78,5 @@ namespace ProjectOneApi.Controllers
             }
         }
 
-        // DELETE: api/Store/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
