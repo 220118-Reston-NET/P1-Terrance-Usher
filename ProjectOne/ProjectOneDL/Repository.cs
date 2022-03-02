@@ -87,6 +87,11 @@ namespace ProjectOneDL
         {
             throw new NotImplementedException();
         }
+
+        public void GiveCustAuthentication(int CustID)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

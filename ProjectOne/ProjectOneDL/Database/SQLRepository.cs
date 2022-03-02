@@ -300,6 +300,9 @@ namespace ProjectOneDL
                     foundCust.CustName = reader.GetString(1);
                     foundCust.CustAddress = reader.GetString(2);
                     foundCust.CustNum = reader.GetString(3);
+                    foundCust.PassWord = reader.GetString(4);
+                    foundCust.UserName = reader.GetString(5);
+                    foundCust.Authorized = reader.GetBoolean(6);
                 }
             }
             return foundCust;
@@ -362,6 +365,25 @@ namespace ProjectOneDL
 
                 return listOfInv;
 
+            }
+        }
+
+        public void GiveCustAuthentication(int CustID)
+        {
+            string sqlQuery = @"update Customer 
+                            set Authorized = 1
+                            where CustID  = @CustID";
+
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
+            {
+
+                con.Open();
+
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+
+                command.Parameters.AddWithValue("@CustID", CustID);
+
+                command.ExecuteNonQuery();
             }
         }
     }

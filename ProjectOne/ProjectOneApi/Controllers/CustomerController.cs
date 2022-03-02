@@ -21,8 +21,8 @@ namespace ProjectOneApi.Controllers
         }
 
         // GET: api/Customer
-        [HttpGet("GetAllCustomers/{UserName}/{PassWord}")]
-        public async Task<IActionResult> GetAllCustomersAsync(string UserName, string PassWord)
+        [HttpGet("GetAllCustomers")]
+        public async Task<IActionResult> GetAllCustomersAsync([FromQuery]string UserName, [FromQuery] string PassWord)
         {
             try
             {
@@ -36,35 +36,6 @@ namespace ProjectOneApi.Controllers
             }
         }
 
-        [HttpGet("GetAllStores")]
-        public IActionResult GetAllStores()
-        {
-            try
-            {
-                return Ok(_custBL.GetAllStores());
-
-            }
-            catch (SqlException)
-            {
-                
-                return NotFound();
-            }
-        }
-
-        // GET: api/Customer/5
-        [HttpGet("GetStoreByID/{storeID}")]
-        public IActionResult GetStoreByName(int storeID)
-        {
-            try
-            {
-                return Ok(_custBL.SearchStores(storeID));
-            }
-            catch (System.Exception)
-            {
-                
-                return NotFound();
-            }
-        }
 
         // GET: api/Customer/5
         [HttpGet("GetCustomer/{c_cate}/{name}")]
@@ -97,7 +68,7 @@ namespace ProjectOneApi.Controllers
         }
 
         // POST: api/Customer
-        [HttpPost ("Add")]
+        [HttpPost ("AddCustomer")]
         public IActionResult AddCustomer([FromBody] Cust c_cust)
         {
             try
@@ -112,15 +83,19 @@ namespace ProjectOneApi.Controllers
         }
 
         // PUT: api/Customer/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("AuthorizeCustomer/{UserName}/{PassWord}/{CustomerID}")]
+        public IActionResult Put(string UserName, string PassWord, int CustomerID)
         {
+            try
+            {
+                return Accepted("Successfully updated a Customer",_custBL.GiveCustAuthentication(UserName, PassWord, CustomerID));
+            }
+            finally
+            {
+                Conflict();
+            }
         }
 
-        // DELETE: api/Customer/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

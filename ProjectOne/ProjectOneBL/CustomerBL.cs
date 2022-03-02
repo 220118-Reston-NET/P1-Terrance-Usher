@@ -68,11 +68,9 @@ namespace ProjectOneBL
         public async Task<List<Cust>> GetAllCustomersAsync(string UserName, string PassWord)
         {
             if (AuthenticateCust(UserName,PassWord))
-            return await _repo.GetAllCustAsync();
+                return await _repo.GetAllCustAsync();
             else
-            {
                 return null;
-            }
         }
 
         public List<Orders> GetAllOrders()
@@ -93,6 +91,19 @@ namespace ProjectOneBL
         public List<Inv> GetStoreInv(int StoreID)
         {
             return _repo.GetStoreInv(StoreID);
+        }
+
+        public Cust GiveCustAuthentication(string UserName, string PassWord, int CustID)
+        {
+            if (AuthenticateCust(UserName,PassWord))
+            {
+                _repo.GiveCustAuthentication(CustID);
+                return _repo.GetCustByID(CustID);
+            }
+            else
+            {
+                throw new Exception("You're not authorized.");
+            }
         }
 
         public List<Cust> SearchCustomer(string c_cate, string c_name)

@@ -37,6 +37,8 @@ namespace ProjectOneBL
 
         Task<List<Cust>> GetAllCustomersAsync(string UserName, string PassWord);
 
+        Cust GiveCustAuthentication(string UserName, string PassWord, int CustID);
+
         bool AuthenticateCust(string UserName, string PassWord);
 
 

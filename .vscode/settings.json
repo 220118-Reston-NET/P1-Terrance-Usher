@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/4d7fcd20-8941-4677-af74-8cff87acd0b8/resourceGroups/ProjectZero/providers/Microsoft.Web/sites/ProjectOneCollectible",
+    "appService.deploySubpath": "ProjectOne\\ProjectOneApi\\publish"
+}

@@ -28,6 +28,7 @@ namespace ProjectOneDL
 
         Task<List<Cust>> GetAllCustAsync();
 
+        void GiveCustAuthentication(int CustID);
 
         /// <summary>
         /// Grab a customer by their ID
